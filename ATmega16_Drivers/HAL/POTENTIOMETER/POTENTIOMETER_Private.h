@@ -1,0 +1,4 @@
+#ifndef POTENTIOMETER_PRIVATE_H_
+#define POTENTIOMETER_PRIVATE_H_
+
+#endif
