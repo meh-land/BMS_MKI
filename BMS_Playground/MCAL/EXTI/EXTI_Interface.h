@@ -1,9 +1,9 @@
 #ifndef EXTI_INTERFACE_H_
 #define EXTI_INTERFACE_H_
 
-#define EXTI_INT0 0
-#define EXTI_INT1 1
-#define EXTI_INT2 2
+#define EXTI_INT0 2
+#define EXTI_INT1 3
+#define EXTI_INT2 19
 
 #define EXTI_MCUCR_ISC00 0
 #define EXTI_MCUCR_ISC01 1

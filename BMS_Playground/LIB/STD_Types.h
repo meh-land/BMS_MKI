@@ -38,4 +38,20 @@ typedef enum bool
 
 typedef void (*ptrFunc)(void);
 
+/*
+	MCU Frequency (in MHz)
+*/
+#ifndef F_CPU
+
+	#define F_CPU		8000000UL
+	
+#endif
+
+
+/*
+	CPU Periodic Time (in us)
+*/
+
+#define CLK_CPU		12.5			// 1/F_CPU
+
 #endif

@@ -39,6 +39,4 @@ void BMS_voidDisplayReading(u8 copy_u8CellNum, u16 copy_u16CellVoltage);
 void BMS_voidPeriodicallyDisplayReading(u8 copy_u8NumOfCells);
 
 
-
-
 #endif

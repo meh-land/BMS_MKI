@@ -6,7 +6,7 @@
 #include "EXTI_CFG.h"
 
 /** Global Array of Ptr to ISR Functions */
-void (*EXTI_CallBack[3])(void) = {NULL, NULL, NULL};
+static ptrFunc EXTI_CallBack[3] = {NULL};
 
 void EXTI_voidInit(void)
 {
@@ -102,37 +102,44 @@ void EXTI_voidClearFlag(u8 copy_u8Line)
 
 void EXTI_voidSetCallBack(void (*copy_ptrvoidCallBack)(void), u8 copy_u8Line)
 {
+	switch (copy_u8Line)
+	{
+		case EXTI_INT0: copy_u8Line = 0;
+		case EXTI_INT1: copy_u8Line = 1;
+		case EXTI_INT2: copy_u8Line = 2;
+	}
+	
 	if (copy_ptrvoidCallBack != NULL)
 		EXTI_CallBack[copy_u8Line] = copy_ptrvoidCallBack;
 }
 
 
-void __vector_1(void) __attribute__((signal));
-void __vector_1(void)
-{
-	if(EXTI_CallBack[0] != NULL)
-	{
-		EXTI_CallBack[0](); 
-		EXTI_voidClearFlag(EXTI_GICR_INT0);
-	}
-}
-
 void __vector_2(void) __attribute__((signal));
 void __vector_2(void)
 {
-	if(EXTI_CallBack[1] != NULL)
+	if(EXTI_CallBack[0] != NULL)
 	{
-		EXTI_CallBack[1]();
-		EXTI_voidClearFlag(EXTI_GICR_INT1);
+		EXTI_CallBack[0]();
+		EXTI_voidClearFlag(EXTI_GICR_INT0);
 	}
 }
 
 void __vector_3(void) __attribute__((signal));
 void __vector_3(void)
 {
-	if( EXTI_CallBack[2] != NULL )
+	if( EXTI_CallBack[1] != NULL )
 	{
-		EXTI_CallBack[2]();
+		EXTI_CallBack[1]();
+		EXTI_voidClearFlag(EXTI_GICR_INT1);
+	}
+}
+
+void __vector_19(void) __attribute__((signal));
+void __vector_19(void)
+{
+	if(EXTI_CallBack[2] != NULL)
+	{
+		EXTI_CallBack[2](); 
 		EXTI_voidClearFlag(EXTI_GICR_INT2);
 	}
 }

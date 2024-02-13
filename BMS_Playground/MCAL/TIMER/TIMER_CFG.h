@@ -1,20 +1,7 @@
 #ifndef TIMER_CFG_H_
 #define TIMER_CFG_H_
 
-/*
-	MCU Frequency (in MHz)
-*/
-
-#define F_CPU		8000000UL
-
-
-/*
-	CPU Periodic Time (in us)
-*/
-
-#define CLK_CPU		12.5			// 1/F_CPU 
-
-
+ 
 /*
 	Timer 0 Modes of Operation Options
 		TMR0_OVF_MODE (Normal Mode)

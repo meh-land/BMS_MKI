@@ -79,6 +79,7 @@ u8 DIO_u8GetPinValue(u8 copy_u8PortName, u8 copy_u8PinNum)
 		case DIO_PORTB: return (GET_BIT(PINB, copy_u8PinNum));
 		case DIO_PORTC: return (GET_BIT(PINC, copy_u8PinNum));
 		case DIO_PORTD: return (GET_BIT(PIND, copy_u8PinNum));
+		default:		return (0x00);
 	}
 }
 
@@ -150,6 +151,7 @@ u8 DIO_u8GetPortValue(u8 copy_u8PortName)
 		case DIO_PORTB: return (PINB);
 		case DIO_PORTC: return (PINC);
 		case DIO_PORTD: return (PIND);
+		default:		return (0x00);
 	}
 }
 

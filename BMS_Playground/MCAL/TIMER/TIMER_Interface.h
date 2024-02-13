@@ -29,8 +29,8 @@
 										of overflows will be your condition in the ISR
 */
 
-#define TMR0_OVF_VECTOR_ID		11
-#define TMR0_CTC_VECTOR_ID		10
+#define TMR0_OVF_VECTOR_ID		10
+#define TMR0_CTC_VECTOR_ID		20
 
 #define TMR1_OVF_VECTOR_ID		9
 #define TMR1_CTCB_VECTOR_ID		8

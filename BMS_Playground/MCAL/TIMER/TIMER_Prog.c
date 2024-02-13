@@ -5,7 +5,7 @@
 #include "TIMER_CFG.h"
 #include "TIMER_Interface.h"
 
-static ptrFunc TMR_ptrFuncCallBack[16] = {NULL};
+static ptrFunc TMR_ptrFuncCallBack[21] = {NULL};
 	
 
 
@@ -199,15 +199,15 @@ void TMR_voidCallBack(ptrFunc copy_ptrFuncISR, u8 copy_u8VectorID)
 
 }
 
-void __vector_11 (void)	__attribute__((signal));
-void __vector_11 (void)
+void __vector_10 (void)	__attribute__((signal));
+void __vector_10 (void)
 {
 	if (TMR_ptrFuncCallBack[TMR0_OVF_VECTOR_ID] != NULL)
 		TMR_ptrFuncCallBack[TMR0_OVF_VECTOR_ID]();
 }
 
-void __vector_10 (void)	__attribute__((signal));
-void __vector_10 (void)
+void __vector_20 (void)	__attribute__((signal));
+void __vector_20 (void)
 {
 	if (TMR_ptrFuncCallBack[TMR0_CTC_VECTOR_ID] != NULL)
 		TMR_ptrFuncCallBack[TMR0_CTC_VECTOR_ID]();
