@@ -3,11 +3,11 @@
 
 // bms_init()
 /*
-	input: no of cells
+	input: no of cells and *MAYBE* reading update time...?!
 	output: void
-	what does it do? initializes ADC pins + timer initializations
+	what does it do? ADC init + initializes ADC pins based on no of cells + timer initializations
 */
-void BMS_voidInit(u8 copy_u8NumOfCells);
+void BMS_voidInit(u8 copy_u8NumOfCells, u8 copy_u8UpdateReadingTime);
 
 // bms_read()
 /*
