@@ -22,7 +22,7 @@ typedef enum DIO_functionCallID
 	
 } DIO_functionID;
 
-static void DIO_voidDebugAndTest(); // led pattern for each error state + steady led for DIO_OK
+//static void DIO_voidDebugAndTest(); // led pattern for each error state + steady led for DIO_OK
 
 
 #endif

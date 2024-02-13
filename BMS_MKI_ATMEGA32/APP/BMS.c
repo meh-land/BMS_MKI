@@ -69,6 +69,9 @@ f32 BMS_u16ReadVoltage(u8 copy_u8CellNum)
 
 	/**Return Vin in mV*/
 	return Local_f32InputValue;
+	
+	/**Return Vin in mV*/
+	return Local_f32AnalogValue;
 }
 
 

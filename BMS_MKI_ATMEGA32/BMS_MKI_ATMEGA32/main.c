@@ -20,63 +20,30 @@
 #include "../HAL/VSEN/VSEN.c"
 #include "../HAL/ACS712/ACS712.c"
 #include "../APP/calculations.c"
+#include "../APP/BMS.c"
 
 
 
 
 int main(void)
 {
-	CALC_voidInit();
+	BMS_voidInit();
 	
 	LCD_voidInitDisplay();
 
 	f32 local_f32Temp = 0;
 	
+	local_f32Temp = BMS_u16ReadVoltage(BMS_CELL_01);
+	LCD_voidDisplayStr("V = ");
+	_delay_ms(1);
+	DISP_voidDisplayOnLCD(local_f32Temp);
+	_delay_ms(1);
+	LCD_voidDisplayStr(" V");
+	_delay_ms(1);
+	
     while(true)
     {
         
-		if (is_updated == true)
-		{
-			switch (Global_u8DisplayFlag)
-			{
-				case DISP_I:
-					local_f32Temp = CALC_f64GetInstCurrent_mA();
-					LCD_voidDisplayStr("I = ");
-					_delay_ms(1);
-					DISP_voidDisplayOnLCD(local_f32Temp);
-					_delay_ms(1);
-					LCD_voidDisplayStr(" A");
-					_delay_ms(1);
-					break;
-				case DISP_V:
-					local_f32Temp = CALC_f64GetInstVoltage_mV();
-					LCD_voidDisplayStr("V = ");
-					_delay_ms(1);
-					DISP_voidDisplayOnLCD(local_f32Temp);
-					_delay_ms(1);
-					LCD_voidDisplayStr(" V");
-					_delay_ms(1);
-					break;
-				case DISP_P:
-					local_f32Temp = CALC_f64GetInstPower_mW();
-					LCD_voidDisplayStr("P = ");
-					_delay_ms(1);
-					DISP_voidDisplayOnLCD(local_f32Temp);
-					_delay_ms(1);
-					LCD_voidDisplayStr(" W");
-					_delay_ms(1);
-					break;
-				case DISP_E:
-					local_f32Temp = CALC_f64GetEnergy_mJ();
-					LCD_voidDisplayStr("E = ");
-					_delay_ms(1);
-					DISP_voidDisplayOnLCD(local_f32Temp);
-					_delay_ms(1);
-					LCD_voidDisplayStr(" W.s");
-					_delay_ms(1);
-					break;
-			}
-			is_updated = false;
-		}
+		
     }
 }

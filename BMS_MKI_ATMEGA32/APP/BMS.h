@@ -24,6 +24,7 @@
 	#define BMS_CELL_06		ADC_CHANNEL_5
 #else
 	#error WTF?!
+#endif
 
 
 // bms_init()
