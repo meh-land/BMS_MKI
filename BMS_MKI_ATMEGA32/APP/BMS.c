@@ -1,6 +1,5 @@
 #include "BMS.h"
 
-// global variable to change displayed cell voltage
 
 void BMS_voidInit(void)
 {
@@ -10,7 +9,6 @@ void BMS_voidInit(void)
 	// enable interrupts
 	sei();
 	
-	/*
 	// initialize external interrupt (option to display cells 1,2 or cells 3,4)
 	EXTI_voidInit();
 	EXTI_voidSetSignalSenseMode(EXTI_SENSE_RISING_EDGE, EXTI_GICR_INT0);
@@ -22,27 +20,25 @@ void BMS_voidInit(void)
 	
 	// setup timer 0 interrupt to run every multiple of 1mS (overflow mode)
 	TMR0_voidInit();
-	TMR_voidCallBack(CALC_voidPeriodicFunc, TMR0_OVF_VECTOR_ID);
-	TMR0_voidSetOVF(BMS_UPDATE_READING_TIME); // 64
-	*/
+	TMR_voidCallBack(BMS_voidPeriodicallyDisplayReading, TMR0_OVF_VECTOR_ID);
+	TMR0_voidSetOVF(64); // 64
+
 }
 
 
-f32 BMS_u16ReadVoltage(u8 copy_u8CellNum)
+f32 BMS_f32ReadVoltage(u8 copy_u8CellNum)
 {
 	/**Local variables used in calculations*/
 	u16 Local_u16DigitalValue = 0;
 	f32 Local_f32AnalogValue = 0;
 	f32 Local_f32InputValue = 0;
 	
-	
 	/**return 0 in case of wrong cell number*/
 	if ((copy_u8CellNum < BMS_CELL_01) || (copy_u8CellNum > (BMS_NO_OF_CELLS - 1)))
 		return Local_f32InputValue;
 	
 	/**Determine the right resistor ratios*/
-	//f32 Local_f32ResistorRatio = (11.0 / 14.0) * (BMS_NO_OF_CELLS - copy_u8CellNum);
-	f32 Local_f32ResistorRatio = (11.0 / 14.0);
+	f32 Local_f32ResistorRatio = (11.0 / 14.0) / (BMS_NO_OF_CELLS - copy_u8CellNum);
 	/*
 		no_of_cells = 2
 		cell_no = x where x = [0, 1]
@@ -69,73 +65,65 @@ f32 BMS_u16ReadVoltage(u8 copy_u8CellNum)
 
 	/**Return Vin in mV*/
 	return Local_f32InputValue;
-	
-	/**Return Vin in mV*/
-	return Local_f32AnalogValue;
 }
 
 
-void BMS_voidDisplayReading(u8 copy_u8CellNum, u16 copy_u16CellVoltage)
+void BMS_voidDisplayReading(u8 copy_u8CellNum, f32 copy_f32CellVoltage)
 {
+	if ((copy_u8CellNum < BMS_CELL_01) || (copy_u8CellNum >= BMS_NO_OF_CELLS))
+		return;
+	_delay_ms(1);
+	LCD_voidDisplayStr("C");
+	_delay_ms(1);
+	LCD_voidDisplayInt(copy_u8CellNum + 1);
+	_delay_ms(1);
+	LCD_voidDisplayStr(" = ");
+	DISP_voidDisplayOnLCD(copy_f32CellVoltage);
+	_delay_ms(1);
+	LCD_voidDisplayStr(" V");
+	_delay_ms(1);
 	
 }
 
 
 void BMS_voidPeriodicallyDisplayReading(u8 copy_u8NumOfCells)
 {
+	static u16 Local_u16Count = 0;
 	
-	
-	
-	
-}
-
-
-/*
-void CALC_voidPeriodicFunc(void)
-{
-	static u16 Local_u16Count =0;
-	//enter this condition every SMAPLING_PERIOD_mS 
-	if(Local_u16Count == 3907){ ////////////////////?????????????????????????????????
-		
+	/*if(Local_u16Count == 3907) // every second
+	{ 
+		// raise update flag
 		is_updated = true;
+		
+		// clear lcd display
 		LCD_voidClrDisplay();
 		
-		//read inst volt
-		Global_f64InstVoltage_mv = VSEN_f32GetVoltageReading();
-		//read inst current
-		Global_f64InstCurrent_mA = ACS712_f32GetCurrentReading();
-	
-		Global_f64InstPower_mW = Global_f64InstVoltage_mv * Global_f64InstCurrent_mA; 
-		Global_f64Energy_mJ += Global_f64InstPower_mW; 
 		
+		
+		// reset timer + counter
 		Local_u16Count = 0;
 		TMR0_voidSetOVF(64);
 	}
+	
+	Local_u16Count++;*/
 
-	Local_u16Count++;
 }
 
 
-// reset
 void ISR_INT0(void)
 {
-	Global_f64InstVoltage_mv = 0;
-	
-	Global_f64InstCurrent_mA = 0;
-	
-	Global_f64InstPower_mW = 0;
-	
-	Global_f64Energy_mJ = 0;
-	
+	BMS_u8CellIndex++;
+	LCD_voidClrDisplay();
+	is_updated = true;
 }
 
 void ISR_INT1(void)
 {
-	Global_u8DisplayFlag += 1;
-	
-	if (Global_u8DisplayFlag > 3)
-		Global_u8DisplayFlag = 0;
+	BMS_u8CellIndex--;
+	LCD_voidClrDisplay();
+	is_updated = true;
 }
+
 
 void DISP_voidDisplayOnLCD(f32 Copy_f32Result)
 {
@@ -160,4 +148,3 @@ void DISP_voidDisplayOnLCD(f32 Copy_f32Result)
 	Displayed = (u32) (Copy_f32Result * Decimal) % Decimal;
 	LCD_voidDisplayInt(Displayed);
 }
-*/

@@ -8,7 +8,11 @@ main.d main.o: .././main.c .././../LIB/BIT_Math.h .././../LIB/STD_Types.h \
  .././../MCAL/DIO/DIO_Prog.c .././../MCAL/DIO/../../LIB/Bit_Math.h \
  .././../MCAL/DIO/../../LIB/STD_Types.h .././../MCAL/DIO/DIO_Registers.h \
  .././../MCAL/DIO/DIO_Private.h .././../MCAL/DIO/DIO_CFG.h \
- .././../MCAL/DIO/DIO_Interface.h .././../MCAL/ADC/ADC_Prog.c \
+ .././../MCAL/DIO/DIO_Interface.h .././../MCAL/GIE/GIE_Prog.c \
+ .././../MCAL/GIE/../../LIB/STD_Types.h \
+ .././../MCAL/GIE/../../LIB/Bit_Math.h .././../MCAL/GIE/GIE_Register.h \
+ .././../MCAL/GIE/GIE_Private.h .././../MCAL/GIE/GIE_CFG.h \
+ .././../MCAL/GIE/GIE_Interface.h .././../MCAL/ADC/ADC_Prog.c \
  .././../MCAL/ADC/../../LIB/STD_Types.h \
  .././../MCAL/ADC/../../LIB/Bit_Math.h .././../MCAL/ADC/ADC_Register.h \
  .././../MCAL/ADC/ADC_Private.h .././../MCAL/ADC/ADC_CFG.h \
@@ -28,18 +32,7 @@ main.d main.o: .././main.c .././../LIB/BIT_Math.h .././../LIB/STD_Types.h \
  .././../HAL/VSEN/../../LIB/STD_Types.h .././../HAL/VSEN/VSEN.h \
  .././../HAL/ACS712/ACS712.c .././../HAL/ACS712/../../LIB/BIT_Math.h \
  .././../HAL/ACS712/../../LIB/STD_Types.h .././../HAL/ACS712/ACS712.h \
- .././../APP/calculations.c .././../APP/../LIB/BIT_Math.h \
- .././../APP/../LIB/STD_Types.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
- C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include/avr/iom32.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\portpins.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\common.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././../APP/calculations.h .././../APP/BMS.c .././../APP/BMS.h
+ .././../APP/BMS.c .././../APP/BMS.h
 
 .././../LIB/BIT_Math.h:
 
@@ -70,6 +63,20 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././../MCAL/DIO/DIO_CFG.h:
 
 .././../MCAL/DIO/DIO_Interface.h:
+
+.././../MCAL/GIE/GIE_Prog.c:
+
+.././../MCAL/GIE/../../LIB/STD_Types.h:
+
+.././../MCAL/GIE/../../LIB/Bit_Math.h:
+
+.././../MCAL/GIE/GIE_Register.h:
+
+.././../MCAL/GIE/GIE_Private.h:
+
+.././../MCAL/GIE/GIE_CFG.h:
+
+.././../MCAL/GIE/GIE_Interface.h:
 
 .././../MCAL/ADC/ADC_Prog.c:
 
@@ -138,32 +145,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././../HAL/ACS712/../../LIB/STD_Types.h:
 
 .././../HAL/ACS712/ACS712.h:
-
-.././../APP/calculations.c:
-
-.././../APP/../LIB/BIT_Math.h:
-
-.././../APP/../LIB/STD_Types.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h:
-
-C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include/avr/iom32.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\portpins.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\common.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
-
-.././../APP/calculations.h:
 
 .././../APP/BMS.c:
 

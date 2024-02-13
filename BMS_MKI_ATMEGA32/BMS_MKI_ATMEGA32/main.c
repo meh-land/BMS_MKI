@@ -13,13 +13,13 @@
 #include "../LIB/STD_Types.h"
 #include <util/delay.h>
 #include "../MCAL/DIO/DIO_Prog.c"
+#include "../MCAL/GIE/GIE_Prog.c"
 #include "../MCAL/ADC/ADC_Prog.c"
 #include "../MCAL/TIMER/TIMER_Prog.c"
 #include "../MCAL/EXTI/EXTI_Prog.c"
 #include "../HAL/LCD/LCD_Prog.c"
 #include "../HAL/VSEN/VSEN.c"
 #include "../HAL/ACS712/ACS712.c"
-#include "../APP/calculations.c"
 #include "../APP/BMS.c"
 
 
@@ -33,17 +33,42 @@ int main(void)
 
 	f32 local_f32Temp = 0;
 	
-	local_f32Temp = BMS_u16ReadVoltage(BMS_CELL_01);
-	LCD_voidDisplayStr("V = ");
-	_delay_ms(1);
-	DISP_voidDisplayOnLCD(local_f32Temp);
-	_delay_ms(1);
-	LCD_voidDisplayStr(" V");
-	_delay_ms(1);
+	/*local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_01);
+	BMS_voidDisplayReading(BMS_CELL_01, local_f32Temp);*/
+	
+	/*local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_04);
+	LCD_voidSetCursorPosition(0,2);
+	BMS_voidDisplayReading(BMS_CELL_04, local_f32Temp);*/
+	
 	
     while(true)
     {
-        
+        if (is_updated)
+		{
+			if (BMS_u8CellIndex % 2 == 0)
+			{
+				local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_01);
+				BMS_voidDisplayReading(BMS_CELL_01, local_f32Temp);
+				
+				local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_02);
+				LCD_voidSetCursorPosition(0,2);
+				BMS_voidDisplayReading(BMS_CELL_02, local_f32Temp);
+				
+				is_updated = false;
+			}
+			else if (BMS_u8CellIndex % 2 == 1)
+			{
+				
+				local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_03);
+				BMS_voidDisplayReading(BMS_CELL_03, local_f32Temp);
+				
+				local_f32Temp = BMS_f32ReadVoltage(BMS_CELL_04);
+				LCD_voidSetCursorPosition(0,2);
+				BMS_voidDisplayReading(BMS_CELL_04, local_f32Temp);
+				
+				is_updated = false;
+			}
+		}
 		
-    }
+	}
 }

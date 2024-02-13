@@ -4,7 +4,7 @@
 #pragma once
 
 // no of cells 
-#define BMS_NO_OF_CELLS 2
+#define BMS_NO_OF_CELLS 4
 
 // defining cells
 #if (BMS_NO_OF_CELLS == 2)
@@ -27,6 +27,14 @@
 #endif
 
 
+// cell counter
+u8 BMS_u8CellIndex = 0;
+
+// updated reading flag
+bool is_updated = true;
+
+#define DECIMAL			2
+
 // bms_init()
 /*
 	input: no of cells and *MAYBE* reading update time...?!
@@ -41,7 +49,7 @@ void BMS_voidInit(void);
 	output: cell voltage (in mV)
 	what does it do? reads the value on ADC pin corresponding to cell no
 */
-f32 BMS_u16ReadVoltage(u8 copy_u8CellNum);
+f32 BMS_f32ReadVoltage(u8 copy_u8CellNum);
 
 
 // bms_disp()
@@ -50,7 +58,7 @@ f32 BMS_u16ReadVoltage(u8 copy_u8CellNum);
 	output: LCD stuff (void)
 	what does it do? what do you think?! XDD
 */
-void BMS_voidDisplayReading(u8 copy_u8CellNum, u16 copy_u16CellVoltage);
+void BMS_voidDisplayReading(u8 copy_u8CellNum, f32 copy_f32CellVoltage);
 
 
 // bms_periodicDisp()
@@ -63,6 +71,10 @@ void BMS_voidDisplayReading(u8 copy_u8CellNum, u16 copy_u16CellVoltage);
 		-> inside the same for loop display the reading of each cell
 */
 void BMS_voidPeriodicallyDisplayReading(u8 copy_u8NumOfCells);
+
+void ISR_INT0(void);
+
+void ISR_INT1(void);
 
 
 #endif
