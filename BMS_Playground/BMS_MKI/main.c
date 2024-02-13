@@ -1,18 +1,21 @@
 /*
- * BMS_MKI.c
- *
- * Created: 2/12/2024 3:56:47 PM
- * Author : Ahmed
- */ 
+ * BMS: MKI 
+ */
 
-#include <avr/io.h>
 
+#include "../LIB/BIT_Math.h"
+#include "../LIB/STD_Types.h"
+#include <util/delay.h>
+#include "../MCAL/DIO/DIO_Prog.c"
+#include "../MCAL/ADC/ADC_Prog.c"
+#include "../MCAL/TIMER/TIMER_Prog.c"
+#include "../MCAL/EXTI/EXTI_Prog.c"
+#include "../HAL/LCD/LCD_Prog.c"
 
 int main(void)
-{
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+{	
+	while(true)
+	{
+		
+	}
 }
-
